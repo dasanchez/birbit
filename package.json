@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@mito/birbits",
-  "version": "0.1.12",
-  "repository": "https://git.vdb.to/zramsay/birbit",
+  "name": "@mito/doesntmatter",
+  "version": "0.1.13",
+  "repository": "https://git.vdb.to/dasanchez/birbit",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
