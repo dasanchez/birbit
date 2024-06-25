@@ -2,7 +2,7 @@
   "private": true,
   "name": "@mito/doesntmatter",
   "version": "0.1.13",
-  "repository": "https://git.vdb.to/dasanchez/birbit",
+  "repository": "https://github.com/dasanchez/birbit",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
