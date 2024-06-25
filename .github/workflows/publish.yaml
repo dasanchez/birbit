@@ -2,10 +2,10 @@ name: Publish ApplicationRecord to Registry
 on:
   release:
     types: [published]
-  # push:
-  #   branches:
-  #     - main
-  #     - '*'
+  push:
+    branches:
+      - main
+      - '*'
 
 env:
   CERC_REGISTRY_USER_KEY: ${{ secrets.CICD_LACONIC_USER_KEY }}
