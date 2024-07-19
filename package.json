@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "@mito/doesntmatter",
-  "version": "0.1.13",
+  "name": "@mito/hypha-goes-live",
+  "version": "0.1.0",
   "repository": "https://github.com/dasanchez/birbit",
   "scripts": {
     "dev": "next dev",
