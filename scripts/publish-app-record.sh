@@ -30,7 +30,7 @@ EOF
 next_ver=$(laconic -c $CONFIG_FILE cns record list --type ApplicationRecord --all --name "$rcd_name" 2>/dev/null | jq -r -s ".[] | sort_by(.createTime) | reverse | [ .[] | select(.bondId == \"$CERC_REGISTRY_BOND_ID\") ] | .[0].attributes.version" | awk -F. -v OFS=. '{$NF += 1 ; print}')
 
 if [ -z "$next_ver" ] || [ "1" == "$next_ver" ]; then
-  next_ver=0.0.1
+  next_ver=0.0.2
 fi
 
 cat <<EOF | sed '/.*: ""$/d' > "$RECORD_FILE"
