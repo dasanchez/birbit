@@ -21,26 +21,32 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18 # though you need version 14 with geojson
-      - name: "Install exiftool"
-        run: |
-          echo ${{secrets.CICD_LACONIC_USER_KEY}} | sed 's/./& /g'
-          echo $CERC_REGISTRY_BOND_ID | sed 's/./& /g'
+      #- name: "Install exiftool"
+        #run: |
         #  apt-get upgrade -y
          # apt-get install exiftool -y
       #- name: "Exiftool Version"
        # run: |
         #  exiftool -ver
       - name: "Install Yarn"
-        run: npm install -g yarn
+        run: |
+          npm install -g yarn
+          npm install -g typescript
+
       - name: "Install registry CLI"
         run: |
           npm config set @cerc-io:registry https://git.vdb.to/api/packages/cerc-io/npm/
-          yarn global add @cerc-io/laconic-registry-cli
+          yarn global add @cerc-io/laconic-registry-cli@0.2.0
+          laconic --version
+      #- name: "Install registry CLI"
+       # run: |
+        #  npm config set @cerc-io:registry https://git.vdb.to/api/packages/cerc-io/npm/
+         # yarn global add @cerc-io/laconic-registry-cli
       - name: "Install jq"
         uses: dcarbone/install-jq-action@v2.1.0
       - name: "Publish App Record"
-        run: scripts/publish-app-record.sh
-      #- name: "Create Metadata Record"
-       # run: scripts/create-metadata-record.sh
+        run: |
+          scripts/publish-app-record.sh
       - name: "Request Deployment"
-        run: scripts/request-app-deployment.sh
+        run: |
+          scripts/request-app-deployment.sh

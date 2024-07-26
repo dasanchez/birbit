@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "@mito/hypha-goes",
-  "version": "0.1.2",
+  "name": "@hypha/webapp-test",
+  "version": "0.1.0",
   "repository": "https://github.com/dasanchez/birbit",
   "scripts": {
     "dev": "next dev",

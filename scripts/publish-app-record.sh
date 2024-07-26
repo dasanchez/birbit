@@ -19,18 +19,18 @@ rcd_app_version=$(jq -r '.version' package.json | sed 's/null//')
 
 cat <<EOF > "$CONFIG_FILE"
 services:
-  cns:
-    restEndpoint: '${CERC_REGISTRY_REST_ENDPOINT:-http://23.111.69.218:1317}'
-    gqlEndpoint: '${CERC_REGISTRY_GQL_ENDPOINT:-https://lx-daemon.audubon.app/api}'
+  registry:
+    rpcEndpoint: '${CERC_REGISTRY_REST_ENDPOINT:-http://159.203.31.82:26657}'
+    gqlEndpoint: '${CERC_REGISTRY_GQL_ENDPOINT:-http://159.203.31.82:9473/api}'
     chainId: ${CERC_REGISTRY_CHAIN_ID:-laconic_9000-1}
     gas: 9550000
-    fees: 500000aphoton
+    fees: 500000photon
 EOF
 
-next_ver=$(laconic -c $CONFIG_FILE cns record list --type ApplicationRecord --all --name "$rcd_name" 2>/dev/null | jq -r -s ".[] | sort_by(.createTime) | reverse | [ .[] | select(.bondId == \"$CERC_REGISTRY_BOND_ID\") ] | .[0].attributes.version" | awk -F. -v OFS=. '{$NF += 1 ; print}')
+next_ver=$(laconic -c $CONFIG_FILE registry record list --type ApplicationRecord --all --name "$rcd_name" 2>/dev/null | jq -r -s ".[] | sort_by(.createTime) | reverse | [ .[] | select(.bondId == \"$CERC_REGISTRY_BOND_ID\") ] | .[0].attributes.version" | awk -F. -v OFS=. '{$NF += 1 ; print}')
 
 if [ -z "$next_ver" ] || [ "1" == "$next_ver" ]; then
-  next_ver=0.0.2
+  next_ver=0.0.1
 fi
 
 cat <<EOF | sed '/.*: ""$/d' > "$RECORD_FILE"
@@ -51,19 +51,19 @@ EOF
 
 
 cat $RECORD_FILE
-RECORD_ID=$(laconic -c $CONFIG_FILE cns record publish --filename $RECORD_FILE --user-key "${CERC_REGISTRY_USER_KEY}" --bond-id ${CERC_REGISTRY_BOND_ID} | jq -r '.id')
+RECORD_ID=$(laconic -c $CONFIG_FILE registry record publish --filename $RECORD_FILE --user-key "${CERC_REGISTRY_USER_KEY}" --bond-id ${CERC_REGISTRY_BOND_ID} | jq -r '.id')
 echo $RECORD_ID
 
 if [ -z "$CERC_REGISTRY_APP_CRN" ]; then
   authority=$(echo "$rcd_name" | cut -d'/' -f1 | sed 's/@//')
   app=$(echo "$rcd_name" | cut -d'/' -f2-)
-  CERC_REGISTRY_APP_CRN="crn://$authority/applications/$app"
+  CERC_REGISTRY_APP_CRN="lrn://$authority/applications/$app"
 fi
 
-laconic -c $CONFIG_FILE cns name set --user-key "${CERC_REGISTRY_USER_KEY}" --bond-id ${CERC_REGISTRY_BOND_ID} "$CERC_REGISTRY_APP_CRN@${rcd_app_version}" "$RECORD_ID"
-laconic -c $CONFIG_FILE cns name set --user-key "${CERC_REGISTRY_USER_KEY}" --bond-id ${CERC_REGISTRY_BOND_ID} "$CERC_REGISTRY_APP_CRN@${CERC_REPO_REF}" "$RECORD_ID"
+laconic -c $CONFIG_FILE registry name set --user-key "${CERC_REGISTRY_USER_KEY}" --bond-id ${CERC_REGISTRY_BOND_ID} "$CERC_REGISTRY_APP_CRN@${rcd_app_version}" "$RECORD_ID"
+laconic -c $CONFIG_FILE registry name set --user-key "${CERC_REGISTRY_USER_KEY}" --bond-id ${CERC_REGISTRY_BOND_ID} "$CERC_REGISTRY_APP_CRN@${CERC_REPO_REF}" "$RECORD_ID"
 if [ "true" == "$CERC_IS_LATEST_RELEASE" ]; then
-  laconic -c $CONFIG_FILE cns name set --user-key "${CERC_REGISTRY_USER_KEY}" --bond-id ${CERC_REGISTRY_BOND_ID} "$CERC_REGISTRY_APP_CRN" "$RECORD_ID"
+  laconic -c $CONFIG_FILE registry name set --user-key "${CERC_REGISTRY_USER_KEY}" --bond-id ${CERC_REGISTRY_BOND_ID} "$CERC_REGISTRY_APP_CRN" "$RECORD_ID"
 fi
 
 rm -f $RECORD_FILE $CONFIG_FILE
