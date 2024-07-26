@@ -10,21 +10,21 @@ rcd_app_version=$(jq -r '.version' package.json | sed 's/null//')
 
 cat <<EOF > "$CONFIG_FILE"
 services:
-  cns:
-    restEndpoint: '${CERC_REGISTRY_REST_ENDPOINT:-http://23.111.69.218:1317}'
-    gqlEndpoint: '${CERC_REGISTRY_GQL_ENDPOINT:-https://lx-daemon.audubon.app/api}'
+  registry:
+    rpcEndpoint: '${CERC_REGISTRY_REST_ENDPOINT:-http://159.203.31.82:26657}'
+    gqlEndpoint: '${CERC_REGISTRY_GQL_ENDPOINT:-http://159.203.31.82:9473/api}'
     chainId: ${CERC_REGISTRY_CHAIN_ID:-laconic_9000-1}
     gas: 550000
-    fees: 200000aphoton
+    fees: 200000photon
 EOF
 
 if [ -z "$CERC_REGISTRY_APP_CRN" ]; then
   authority=$(echo "$rcd_name" | cut -d'/' -f1 | sed 's/@//')
   app=$(echo "$rcd_name" | cut -d'/' -f2-)
-  CERC_REGISTRY_APP_CRN="crn://$authority/applications/$app"
+  CERC_REGISTRY_APP_CRN="lrn://$authority/applications/$app"
 fi
 
-APP_RECORD=$(laconic -c $CONFIG_FILE cns name resolve "$CERC_REGISTRY_APP_CRN" | jq '.[0]')
+APP_RECORD=$(laconic -c $CONFIG_FILE registry name resolve "$CERC_REGISTRY_APP_CRN" | jq '.[0]')
 if [ -z "$APP_RECORD" ] || [ "null" == "$APP_RECORD" ]; then
   echo "No record found for $CERC_REGISTRY_APP_CRN."
   exit 1
@@ -48,7 +48,7 @@ record:
 EOF
 
 cat $RECORD_FILE
-RECORD_ID=$(laconic -c $CONFIG_FILE cns record publish --filename $RECORD_FILE --user-key "${CERC_REGISTRY_USER_KEY}" --bond-id ${CERC_REGISTRY_BOND_ID} | jq -r '.id')
+RECORD_ID=$(laconic -c $CONFIG_FILE registry record publish --filename $RECORD_FILE --user-key "${CERC_REGISTRY_USER_KEY}" --bond-id ${CERC_REGISTRY_BOND_ID} | jq -r '.id')
 echo $RECORD_ID
 
 rm -f $RECORD_FILE $CONFIG_FILE
