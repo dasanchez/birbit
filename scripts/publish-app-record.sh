@@ -17,6 +17,8 @@ rcd_license=$(jq -r '.license' package.json | sed 's/null//')
 rcd_author=$(jq -r '.author' package.json | sed 's/null//')
 rcd_app_version=$(jq -r '.version' package.json | sed 's/null//')
 
+echo "REST ENDPOINT: $CERC_REGISTRY_REST_ENDPOINT"
+
 cat <<EOF > "$CONFIG_FILE"
 services:
   registry:
