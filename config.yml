@@ -1,7 +1,7 @@
 services:
   registry:
-    rpcEndpoint: 'http://159.203.31.82:26657'
-    gqlEndpoint: 'http://159.203.31.82:9473/api'
-    chainId: ${CERC_REGISTRY_CHAIN_ID:-laconic_9000-1}
+    rpcEndpoint: 'http://devnet.lc.stg.earthball.xyz:26657'
+    gqlEndpoint: 'http://devnet.lc.stg.earthball.xyz:9473/api'
+    chainId: ${CERC_REGISTRY_CHAIN_ID:-lorotestnet-1}
     gas: 200000
-    fees: 200000photon
+    fees: 200000alnt
