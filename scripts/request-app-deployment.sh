@@ -14,8 +14,8 @@ services:
     rpcEndpoint: '${CERC_REGISTRY_REST_ENDPOINT:-http://devnet.lc.stg.earthball.xyz:26657}'
     gqlEndpoint: '${CERC_REGISTRY_GQL_ENDPOINT:-http://devnet.lc.stg.earthball.xyz:9473/api}'
     chainId: ${CERC_REGISTRY_CHAIN_ID:-lorotestnet-1}
-    gas: 550000
-    fees: 200000alnt
+    gas: 500000
+    fees: 20000alnt
 EOF
 
 if [ -z "$CERC_REGISTRY_APP_CRN" ]; then
