@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "@conk/test-webapp",
-  "version": "0.0.2",
+  "name": "@conk/test-funky-app",
+  "version": "0.0.1",
   "repository": "https://github.com/dasanchez/birbit",
   "scripts": {
     "dev": "next dev",
