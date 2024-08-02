@@ -11,16 +11,16 @@ export default function Home() {
         <div className={styles.grid}>
 
         <p className={styles.card}>
-          CONFIG1 has value: {process.env.CERC_TEST_WEBAPP_CONFIG1}
+          {process.env.CERC_TEST_WEBAPP_CONFIG1}
         </p>
 
         <p className={styles.card}>
-          CONFIG2 has value: {process.env.CERC_TEST_WEBAPP_CONFIG2}
+          {process.env.CERC_TEST_WEBAPP_CONFIG2}
         </p>
-
+{/* 
         <p className={styles.card}>
-          WEBAPP_DEBUG has value: {process.env.CERC_WEBAPP_DEBUG}
-        </p>
+          {process.env.CERC_WEBAPP_DEBUG}
+        </p> */}
 
         </div>
 
