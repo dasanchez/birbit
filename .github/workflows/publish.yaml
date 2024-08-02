@@ -10,6 +10,9 @@ on:
 env:
   CERC_REGISTRY_USER_KEY: ${{ secrets.CICD_LACONIC_USER_KEY }}
   CERC_REGISTRY_BOND_ID: ${{ secrets.CICD_LACONIC_BOND_ID }}
+  CERC_REGISTRY_RPC_ENDPOINT: http://devnet.lc.stg.earthball.xyz:26657
+  CERC_REGISTRY_GQL_ENDPOINT: http://devnet.lc.stg.earthball.xyz:9473/api
+
 
 jobs:
   cns_publish:

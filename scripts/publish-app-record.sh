@@ -17,12 +17,12 @@ rcd_license=$(jq -r '.license' package.json | sed 's/null//')
 rcd_author=$(jq -r '.author' package.json | sed 's/null//')
 rcd_app_version=$(jq -r '.version' package.json | sed 's/null//')
 
-echo "REST ENDPOINT: $CERC_REGISTRY_REST_ENDPOINT"
+echo "RPC ENDPOINT: $CERC_REGISTRY_RPC_ENDPOINT"
 
 cat <<EOF > "$CONFIG_FILE"
 services:
   registry:
-    rpcEndpoint: '${CERC_REGISTRY_REST_ENDPOINT:-http://devnet.lc.stg.earthball.xyz:26657}'
+    rpcEndpoint: '${CERC_REGISTRY_RPC_ENDPOINT:-http://devnet.lc.stg.earthball.xyz:26657}'
     gqlEndpoint: '${CERC_REGISTRY_GQL_ENDPOINT:-http://devnet.lc.stg.earthball.xyz:9473/api}'
     chainId: ${CERC_REGISTRY_CHAIN_ID:-lorotestnet-1}
     gas: 9550000
