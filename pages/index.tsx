@@ -5,7 +5,7 @@ export default function Home() {
     <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://www.laconic.com/">Laconic!</a>
+          This is a non-reference app!
         </h1>
 
         <div className={styles.grid}>

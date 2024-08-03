@@ -49,6 +49,8 @@ record:
   repository_ref: "$CERC_REPO_REF"
   app_version: "$rcd_app_version"
   app_type: "$CERC_APP_TYPE"
+  tags:
+    - non-reference
 EOF
 
 

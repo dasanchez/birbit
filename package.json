@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@conk/test-funky-app",
+  "name": "@conk/test-nonref-app",
   "version": "0.0.1",
   "repository": "https://github.com/dasanchez/birbit",
   "scripts": {
