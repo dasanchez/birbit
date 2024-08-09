@@ -5,7 +5,7 @@ export default function Home() {
     <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          This is the conky app!
+          This is the wonky app!
         </h1>
 
         <div className={styles.grid}>
