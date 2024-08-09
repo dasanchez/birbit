@@ -5,7 +5,7 @@ export default function Home() {
     <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          This is a brand-new app!
+          This is the polypore app!
         </h1>
 
         <div className={styles.grid}>
