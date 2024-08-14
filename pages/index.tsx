@@ -5,7 +5,7 @@ export default function Home() {
     <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          This is the artsy app!
+          This is Bobby's app!
         </h1>
 
         <div className={styles.grid}>
