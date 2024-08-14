@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@conk/wonky-app",
+  "name": "@artists.conk/artsy-app",
   "version": "0.0.1",
   "repository": "https://github.com/dasanchez/birbit",
   "scripts": {
