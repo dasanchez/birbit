@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@bonk/bobbys-app",
+  "name": "@bonk/wishlist-app",
   "version": "0.0.1",
   "repository": "https://github.com/dasanchez/birbit",
   "scripts": {
